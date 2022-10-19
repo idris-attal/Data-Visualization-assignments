@@ -1,0 +1,108 @@
+---
+title: "Assignment - R introduction"
+output: html_document
+---
+
+### Exercise 1
+
+Define a vector named `num_vec` containing the values `33, 41, 512, 32, 44`. Define also a vector of numeric weights named `weights_vec` containing the values `1, 1, 4, 3, 2`.
+Compute the weighted average, that is
+\[
+\frac{\sum_{i=1}^n x_i \cdot w_i}{\sum_{i=1}^n w_i}
+\]
+where $x_i$ is the $i$-th element of `num_vec`, $w_i$ is the $i$-th element of `weights_vec` and $n$ is the length of `num_vec`.
+
+```{r}
+# Your solution here
+num_vec <- c(33, 41, 512, 32, 44)
+weights_vec <- c(1, 1, 4, 3, 2)
+result <- sum(num_vec*weights_vec)/sum(weights_vec)
+
+result
+```
+
+_Hint_: use vector operations instead of loops. When in doubt for which function to use to perform a task, consult the help page
+
+### Exercise 2
+Define a function, named `weighted_mean`, that accepts two arguments:
+
+  - `numbers`: a vector of numbers
+  - `weights`: a vector of weights
+
+Call the function you just defined using some data. Use vectors of length `3`, of length `6`, and of length `8`.
+Try to use both named arguments and positional arguments in your function calls.
+
+```{r}
+# Your solution here
+weighted_mean <- function(numbers, weights){
+   
+  return(c(sum(numbers*weights)/weights))
+}
+weighted_mean(c(3,6,8),c(3,6,8))
+```
+
+When using positional arguments, what happens when you swap the position of the values you pass to the function? Why?
+  
+
+### Exercise 4
+
+Consider the `mean` function, which computes the average of the input vector. Consider the following code snippet:
+```{r}
+nums <- c(1, 3, 5, 2, 5, NA, 5, 3, 3)
+mean(nums)
+```
+What is the result? NA
+Why do you get such result? 
+Write your answer below: 
+Because NA is not avilable and this mean there is nothing to compare with or get average from it and as a result the result if NA.
+
+
+
+### Exercise 5
+Given the code snippet we also used in the previous exercise:
+```{r}
+
+nums <- c(1, 3, 5, 2, 5, NA, 5, 3, 3)
+mean(nums, na.rm=TRUE)
+
+```
+How can we obtain the result _ignoring_ the `NA`? I.e. how can we get the average of the vector _without_ the `NA`?
+_Hint: read the documentation of the `mean` function._
+
+### Exercise 6
+Consider the following code:
+```{r}
+x <- c(1,2,3,4,NA,5,7,8,NA,10)
+mean(is.na(x))
+```
+what does it compute? In other words, what does it do? 
+it ignore the NA and then calculate the rest of the result by taking average of it.
+Turn the code snippet above in a function, giving it an appropriate name:
+```{r} 
+# Write your solution here
+avg <- function(val){
+  return(mean(is.na(val)))
+}
+avg(c(1,2,3,4,NA,5,7,8,NA,10))
+```
+
+### Exercise 7
+Write `both_na()` , a function that takes two vectors of the same length and returns the number of positions that have an NA in both vectors.
+```{r}
+# Your solution here
+both_na <- function(v1, v2){
+   which(is.na(v1), is.na(v2))
+}
+both_na(c(1,2,3,4,NA,5,7,8,NA,10), c(1,2,3,4,NA,5,7,8,NA,10))
+```
+
+### Exercise 8
+Describe the difference between `is.finite(x)` and `!is.infinite(x)`. To answer this question, try some invocations either in the console or in a code block.
+
+is.finite as the name suggest return the finite value of a collection or vecotr and !is.infinite(x) is the opposite of it, which returns non-finite values.
+
+
+
+
+
+
